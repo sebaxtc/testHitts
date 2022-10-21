@@ -3,6 +3,8 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = PokemonViewModel()
     @State var typeName = ""
+    @State private var searchText = ""
+
     
     var body: some View {
         NavigationView {
@@ -15,6 +17,8 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Pokedex")
+            .searchable(text: $searchText)
+            
         }
         .onAppear(perform: viewModel.fetchData)
     }
